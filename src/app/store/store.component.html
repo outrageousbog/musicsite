@@ -1,0 +1,40 @@
+<div class="col-xl-6 col-sm-12">
+  <div class="row" style="margin: 2vh">
+    <form [formGroup]="songForm" (ngSubmit)="onFormSubmit()">
+      <label for="name">Sangnavn: </label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        placeholder="Master of Puppets"
+        class="form-control">
+      <label for="artist">Kunstner: </label>
+      <input
+        type="text"
+        id="artist"
+        formControlName="artist"
+        placeholder="Metallica"
+        class="form-control">
+      <span class="help-block"
+            *ngIf="!songForm.valid && (songForm.get('name').touched || songForm.get('artist').touched)">
+       Begge felter skal være udfyldt
+    </span>
+      <br>
+      <button class="btn btn-success" [disabled]="!songForm.valid" type="submit">
+        Tilføj
+      </button>
+    </form>
+  </div>
+
+
+  <hr>
+
+    <ul class="list-group d-flex justify-content-between" *ngFor="let song of this.songList; let i = index">
+      <li class="list-group-item pop" style="margin: 3px"
+          (click)="this.onButtonClick(i)">
+        <b>{{song.name}}</b>
+        <br>{{song.artist}}
+      </li>
+    </ul>
+
+</div>
